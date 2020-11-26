@@ -1,0 +1,13 @@
+@import "mixins";
+
+.button {
+  @include flex;
+  @include transition;
+
+  filter: grayscale(100%) opacity(75%);
+  padding: 15px;
+
+  &:hover {
+    filter: grayscale(0%) opacity(100%);
+  }
+}

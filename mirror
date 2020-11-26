@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# This project had to share components from the Mirror project.
+# However, creating a library or a submodule was not preferred.
+# This script simply copies the components from the Mirror project.
+
+# yarn add \
+#   @apollo/client \
+#   @material-ui/core \
+#   @tippyjs/react \
+#   @types/classnames \
+#   @types/numeral \
+#   @types/ramda \
+#   bignumber.js \
+#   classnames \
+#   graphql \
+#   numeral \
+#   ramda \
+#   react-router-dom \
+#   tippy.js \
+#   use-onclickoutside
+
+rm -rf \
+  src/airdrop \
+  src/components \
+  src/libs \
+  src/styles \
+  src/index.scss
+
+cp -r \
+  ../mirror-web-app/src/airdrop \
+  ../mirror-web-app/src/components \
+  ../mirror-web-app/src/libs \
+  ../mirror-web-app/src/styles \
+  ../mirror-web-app/src/index.scss \
+  src
