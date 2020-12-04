@@ -1,0 +1,14 @@
+@import "mixins";
+
+.item {
+  @include flex(flex-start);
+
+  .title {
+    width: 4rem;
+  }
+
+  .content {
+    width: 8rem;
+    text-align: right;
+  }
+}

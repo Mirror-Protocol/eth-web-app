@@ -116,16 +116,24 @@ export const contractQuery = selectorFamily({
 })
 
 /* price */
-const ustTokenDataQuery = selector({
-  key: "ustTokenData",
-  get: async ({ get }) => {
+const tokenDataQuery = selectorFamily({
+  key: "tokenData",
+  get: (token: string) => async ({ get }) => {
     const network = get(networkQuery)
 
     if (network) {
-      const { token: USTAddress } = get(itemBySymbolQuery("UST"))!
-      const token0 = new Token(network.chainId, USTAddress, DECIMALS)
-      return token0
+      const tokenData = new Token(network.chainId, token, DECIMALS)
+      return tokenData
     }
+  },
+})
+
+const ustTokenDataQuery = selector({
+  key: "ustTokenData",
+  get: async ({ get }) => {
+    const { token } = get(itemBySymbolQuery("UST"))!
+    const tokenData = get(tokenDataQuery(token))
+    return tokenData
   },
 })
 
@@ -152,6 +160,26 @@ export const priceQuery = selectorFamily({
   get: (token: string) => async ({ get }) => {
     const { route } = get(pairQuery(token))
     return route?.midPrice.toSignificant()
+  },
+})
+
+export const poolQuery = selectorFamily({
+  key: "pool",
+  get: (token: string) => async ({ get }) => {
+    const ust = get(ustTokenDataQuery)
+    const tokenData = get(tokenDataQuery(token))
+    const { pair } = get(pairQuery(token))
+
+    if (pair && ust && tokenData) {
+      try {
+        return {
+          ust: pair.reserveOf(ust).toFixed(),
+          asset: pair.reserveOf(tokenData).toFixed(),
+        }
+      } catch {
+        // Do nothing
+      }
+    }
   },
 })
 

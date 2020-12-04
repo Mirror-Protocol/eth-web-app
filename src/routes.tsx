@@ -5,6 +5,7 @@ import Send from "./pages/Send"
 import Stake from "./pages/Stake"
 import Claim from "./pages/Claim"
 import Airdrop from "./pages/Airdrop"
+import Data from "./pages/Data"
 
 export default (
   <Switch>
@@ -14,5 +15,6 @@ export default (
     <Route path="/stake/:token" component={Stake} />
     <Route path="/claim/:token" component={Claim} />
     <Route path="/airdrop" component={Airdrop} />
+    <Route path="/data" component={Data} />
   </Switch>
 )
