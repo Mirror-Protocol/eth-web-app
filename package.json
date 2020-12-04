@@ -65,8 +65,11 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,json,scss,md}": [
-      "prettier --no-semi --write"
+      "prettier --write"
     ]
+  },
+  "prettier": {
+    "semi": false
   },
   "browserslist": {
     "production": [
