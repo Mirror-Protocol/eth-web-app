@@ -42,8 +42,8 @@ const useOnboard = () => {
   const onClick = async () => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
       const method = "eth_requestAccounts"
-      const [account] = await window.ethereum.request({ method })
-      setAccount(account)
+      const accounts = await window.ethereum?.request({ method })
+      accounts && setAccount(accounts[0])
     } else {
       onboarding.current?.startOnboarding()
     }
