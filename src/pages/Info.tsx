@@ -6,7 +6,7 @@ import Card from "../components/Card"
 import WithSuspense from "../containers/WithSuspense"
 import { poolQuery } from "../database/selectors"
 import { useListed } from "../database/useWhitelist"
-import styles from "./Data.module.scss"
+import styles from "./Info.module.scss"
 
 const Heading = () => (
   <article className={styles.item}>
@@ -49,7 +49,7 @@ const Fallback = ({ symbol }: { symbol: string }) => (
   </article>
 )
 
-const Data = () => {
+const Info = () => {
   const listed = useListed()
 
   return (
@@ -74,4 +74,4 @@ const Data = () => {
   )
 }
 
-export default Data
+export default Info
