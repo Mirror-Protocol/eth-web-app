@@ -19,7 +19,7 @@ const Claim = () => {
   const contents = [{ title: "Claiming", content: formatAsset(reward, "MIR") }]
 
   /* submit */
-  const contract = useContract(pool)
+  const contract = useContract(pool!)
   const tx = async (signer: ethers.providers.JsonRpcSigner) => {
     const withSigner = contract!.connect(signer)
     const { hash } = await withSigner.getReward()

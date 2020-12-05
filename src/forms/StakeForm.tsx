@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useRouteMatch } from "react-router-dom"
 import { ethers } from "ethers"
 
 import useForm from "../libs/useForm"
@@ -7,7 +6,6 @@ import { placeholder, step, validate as v } from "../libs/formHelpers"
 import { renderBalance } from "../libs/formHelpers"
 import FormGroup from "../components/FormGroup"
 
-import useItem from "../database/useItem"
 import useBalance from "../database/useBalance"
 import useContract from "../database/useContract"
 import FormContainer from "../forms/FormContainer"
@@ -17,12 +15,14 @@ enum Key {
   value = "value",
 }
 
-const Stake = ({ type, tab }: { type: "stake" | "unstake"; tab: Tab }) => {
+interface Props extends Required<ListedItem> {
+  type: "stake" | "unstake"
+  tab: Tab
+}
+
+const Stake = ({ type, tab, symbol, lp, pool }: Props) => {
   /* context */
-  const { params } = useRouteMatch<{ token: string }>()
-  const { token } = params
-  const { symbol, lp, pool } = useItem(token)
-  const balance = useBalance({ stake: lp, unstake: pool }[type])
+  const balance = useBalance({ stake: lp, unstake: pool }[type]!)
 
   /* form:validate */
   const validate = ({ value }: Values<Key>) => ({

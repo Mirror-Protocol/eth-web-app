@@ -13,9 +13,13 @@ const StakeList = () => {
           ({ symbol: a }, { symbol: b }) =>
             getSymbolIndex(a) - getSymbolIndex(b)
         )
-        .map((item) => (
-          <StakeItem {...item} key={item.token} />
-        ))}
+        .map((item) => {
+          const { token, lp, pool } = item
+          return (
+            lp &&
+            pool && <StakeItem {...item} lp={lp} pool={pool} key={token} />
+          )
+        })}
     </Grid>
   )
 }

@@ -206,32 +206,35 @@ export const aprQuery = selectorFamily({
     const MIRPrice = get(priceQuery(mir))!
     const liquidityValue = times(2, get(liquidityValueQuery(token)))
     const { lp, pool } = get(itemQuery(token))
-    const totalLpShare = get(totalSupplyQuery(lp))
-    const stakedLpShare = get(
-      abiQuery({ token: lp, name: "balanceOf", param: pool })
-    )
 
-    if (process.env.NODE_ENV === "development") {
-      const { symbol } = get(itemQuery(token))
-      console.groupCollapsed(`APR: ${symbol}`)
-      console.table({ token, lp, pool })
-      console.table({
-        "MIR annual rewards": MIRAnnualRewards,
-        "MIR price": MIRPrice,
-        "Liquidity value": liquidityValue,
-        "Staked LP share": stakedLpShare,
-        "Total LP share": totalLpShare,
+    if (lp && pool) {
+      const totalLpShare = get(totalSupplyQuery(lp))
+      const stakedLpShare = get(
+        abiQuery({ token: lp, name: "balanceOf", param: pool })
+      )
+
+      if (process.env.NODE_ENV === "development") {
+        const { symbol } = get(itemQuery(token))
+        console.groupCollapsed(`APR: ${symbol}`)
+        console.table({ token, lp, pool })
+        console.table({
+          "MIR annual rewards": MIRAnnualRewards,
+          "MIR price": MIRPrice,
+          "Liquidity value": liquidityValue,
+          "Staked LP share": stakedLpShare,
+          "Total LP share": totalLpShare,
+        })
+        console.groupEnd()
+      }
+
+      return calc.apr({
+        MIRAnnualRewards,
+        MIRPrice,
+        liquidityValue,
+        stakedLpShare,
+        totalLpShare,
       })
-      console.groupEnd()
     }
-
-    return calc.apr({
-      MIRAnnualRewards,
-      MIRPrice,
-      liquidityValue,
-      stakedLpShare,
-      totalLpShare,
-    })
   },
 })
 
@@ -254,12 +257,21 @@ export const abiQuery = selectorFamily({
   },
 })
 
-export const balanceQuery = selectorFamily({
+export const balanceQuery = selectorFamily<
+  string | undefined,
+  string | undefined
+>({
   key: "balance",
-  get: (token: string) => async ({ get }) => {
+  get: (token?: string) => async ({ get }) => {
     const address = get(atom.addressState)
-    const balance = get(abiQuery({ token, name: "balanceOf", param: address }))
-    return balance
+
+    if (token) {
+      const balance = get(
+        abiQuery({ token, name: "balanceOf", param: address })
+      )
+
+      return balance
+    }
   },
 })
 
@@ -278,10 +290,13 @@ export const rewardQuery = selectorFamily({
   get: (token: string) => ({ get }) => {
     const address = get(atom.addressState)
     const { pool } = get(itemQuery(token))
-    const reward = get(
-      abiQuery({ token: pool, name: "earned", param: address })
-    )
-    return reward
+
+    if (pool) {
+      const reward = get(
+        abiQuery({ token: pool, name: "earned", param: address })
+      )
+      return reward
+    }
   },
 })
 

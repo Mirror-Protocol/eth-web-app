@@ -12,7 +12,7 @@ import APR from "./APR"
 import AddToMetamask from "./AddToMetamask"
 import StakeItemButton from "./StakeItemButton"
 
-const StakeItem = (props: ListedItem) => {
+const StakeItem = (props: Required<ListedItem>) => {
   const { token, symbol, lp, pool } = props
   const stakable = useRecoilValue(selector.balanceQuery(lp))
   const staked = useRecoilValue(selector.balanceQuery(pool))
@@ -22,8 +22,8 @@ const StakeItem = (props: ListedItem) => {
   const item = {
     token,
     symbol,
-    stakable: gt(stakable, 0),
-    staked: gt(staked, 0),
+    stakable: stakable ? gt(stakable, 0) : false,
+    staked: staked ? gt(staked, 0) : false,
     apr: (
       <WithSuspense fallback={<TextLoading />}>
         <APR token={token} />

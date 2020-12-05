@@ -3,40 +3,30 @@
     "symbol": "LUNA",
     "name": "Luna",
     "token": "0xbf51453468771D14cEbdF8856cC5D5145364Cd6F",
-    "lp": "",
-    "pool": "",
     "status": "LISTED"
   },
   "0x6cA13a4ab78dd7D657226b155873A04DB929A3A4": {
     "symbol": "UST",
     "name": "Terra USD",
     "token": "0x6cA13a4ab78dd7D657226b155873A04DB929A3A4",
-    "lp": "",
-    "pool": "",
     "status": "LISTED"
   },
   "0xF0b0fB87017b644eC76644Ea0FA704BFA5f20F0E": {
     "symbol": "KRT",
     "name": "Terra KRW",
     "token": "0xF0b0fB87017b644eC76644Ea0FA704BFA5f20F0E",
-    "lp": "",
-    "pool": "",
     "status": "LISTED"
   },
   "0x1d805d8660Ae73E3624AECAa34ca5FcF8E26E0a5": {
     "symbol": "SDT",
     "name": "Terra SDR",
     "token": "0x1d805d8660Ae73E3624AECAa34ca5FcF8E26E0a5",
-    "lp": "",
-    "pool": "",
     "status": "LISTED"
   },
   "0x51e7f3ED326719a1469EbD7E68B8AB963d64eBA6": {
     "symbol": "MNT",
     "name": "Terra MNT",
     "token": "0x51e7f3ED326719a1469EbD7E68B8AB963d64eBA6",
-    "lp": "",
-    "pool": "",
     "status": "LISTED"
   },
   "0xDAdC10D2dAC9E111835d4423670573Ae45714e7C": {

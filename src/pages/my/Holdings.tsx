@@ -16,7 +16,7 @@ const Holdings = () => {
   )
 
   const dataSource = Object.entries(balances)
-    .filter(([, { contents: balance }]) => gt(balance, 0))
+    .filter(([, { contents: balance }]) => gt(balance as string, 0))
     .map(([token, { contents: balance }]) => {
       return { ...whitelist[token], token, balance }
     })
