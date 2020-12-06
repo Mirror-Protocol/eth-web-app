@@ -270,7 +270,7 @@ export const balanceQuery = selectorFamily<
         abiQuery({ token, name: "balanceOf", param: address })
       )
 
-      return balance
+      return integer(balance)
     }
   },
 })
