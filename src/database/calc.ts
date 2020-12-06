@@ -1,4 +1,5 @@
 import BigNumber from "bignumber.js"
+import { SMALLEST } from "../constants"
 
 export const getMIRAnnualRewards = (now = Date.now(), isMIR = false) => {
   const GENESIS = 1607022000000
@@ -23,9 +24,10 @@ export const apr = (params: Params) => {
 
   const MIRAnnualRewardsValue = new BigNumber(MIRAnnualRewards).times(MIRPrice)
   const stakedRatio = new BigNumber(stakedLpShare).div(totalLpShare)
+  const liquidityAmount = new BigNumber(liquidityValue).div(SMALLEST)
 
   const numerator = MIRAnnualRewardsValue
-  const denominator = new BigNumber(liquidityValue).times(stakedRatio)
+  const denominator = liquidityAmount.times(stakedRatio)
 
   return denominator.gt(0) ? numerator.div(denominator).toString() : "0"
 }

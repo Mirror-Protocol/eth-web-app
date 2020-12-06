@@ -8,9 +8,9 @@ import { placeholder, step, validate as v } from "../libs/formHelpers"
 import { renderBalance } from "../libs/formHelpers"
 import FormGroup from "../components/FormGroup"
 
-import { useSymbol } from "../database/useWhitelist"
-import useBalance from "../database/useBalance"
-import useContract from "../database/useContract"
+import { useSymbol } from "../database/asset"
+import { useBalance } from "../database/balance"
+import { useContract } from "../database/contract"
 import FormContainer from "../forms/FormContainer"
 
 enum Key {

@@ -1,5 +1,5 @@
 import { FC } from "react"
-import useAddress from "../database/useAddress"
+import { useAddress } from "../database/address"
 import ConnectionRequired from "../containers/ConnectionRequired"
 import WithSuspense from "./WithSuspense"
 

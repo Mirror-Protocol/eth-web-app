@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import useOnboard from "../../ethereum/useOnboard"
-import useAddress from "../../database/useAddress"
+import { useAddress } from "../../database/address"
 
 const useOpenToConnect = (href?: string) => {
   const { onClick } = useOnboard()

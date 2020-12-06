@@ -1,40 +1,29 @@
 import { useRecoilValue } from "recoil"
 
 import { gt } from "../../libs/math"
-import { formatAsset } from "../../libs/parse"
+import { format, formatAsset } from "../../libs/parse"
+import { percent } from "../../libs/num"
 import StakeItemCard from "../../components/StakeItemCard"
 
-import WithSuspense from "../../containers/WithSuspense"
-import TextLoading from "../../containers/TextLoading"
-import * as selector from "../../database/selectors"
-import Price from "./Price"
-import APR from "./APR"
+import { uniswapLinksQuery } from "../../database/uniswap"
+import { balanceQuery } from "../../database/balance"
 import AddToMetamask from "./AddToMetamask"
 import StakeItemButton from "./StakeItemButton"
 
-const StakeItem = (props: Required<ListedItem>) => {
-  const { token, symbol, lp, pool } = props
-  const stakable = useRecoilValue(selector.balanceQuery(lp))
-  const staked = useRecoilValue(selector.balanceQuery(pool))
-  const total = useRecoilValue(selector.totalSupplyQuery(pool))
-  const { swap, add } = useRecoilValue(selector.uniswapLinksQuery(token))
+const StakeItem = (props: AssetInfo) => {
+  const { token, symbol, lp, pool, price, apr, lpStaked } = props
+  const stakable = useRecoilValue(balanceQuery(lp))
+  const staked = useRecoilValue(balanceQuery(pool))
+  const { swap, add } = useRecoilValue(uniswapLinksQuery(token))
 
   const item = {
     token,
     symbol,
     stakable: stakable ? gt(stakable, 0) : false,
     staked: staked ? gt(staked, 0) : false,
-    apr: (
-      <WithSuspense fallback={<TextLoading />}>
-        <APR token={token} />
-      </WithSuspense>
-    ),
-    totalStaked: formatAsset(total, "LP", { integer: true }),
-    price: (
-      <WithSuspense fallback={<TextLoading />}>
-        <Price token={token} />
-      </WithSuspense>
-    ),
+    apr: percent(apr),
+    totalStaked: formatAsset(lpStaked, "LP", { integer: true }),
+    price: `${format(price)} UST`,
     emphasize: symbol === "MIR",
   }
 

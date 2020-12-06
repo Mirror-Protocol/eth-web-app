@@ -1,25 +1,29 @@
+import { useRecoilValue } from "recoil"
+import { minus, number } from "../../libs/math"
 import Grid from "../../components/Grid"
-import { useListed } from "../../database/useWhitelist"
+import { isAsset } from "../../types/isItem"
+import { infoQuery } from "../../database/info"
+import { useListed } from "../../database/assets"
 import StakeItem from "./StakeItem"
 
 const StakeList = () => {
   const listed = useListed()
+  const info = useRecoilValue(infoQuery)
 
   return (
     <Grid wrap={3}>
       {listed
-        .filter(({ lp, pool }) => lp && pool)
+        .filter(isAsset)
+        .sort(({ token: a }, { token: b }) =>
+          number(minus(info[b].apr, info[a].apr))
+        )
         .sort(
           ({ symbol: a }, { symbol: b }) =>
             getSymbolIndex(a) - getSymbolIndex(b)
         )
-        .map((item) => {
-          const { token, lp, pool } = item
-          return (
-            lp &&
-            pool && <StakeItem {...item} lp={lp} pool={pool} key={token} />
-          )
-        })}
+        .map(({ token }) => (
+          <StakeItem {...info[token]} key={token} />
+        ))}
     </Grid>
   )
 }

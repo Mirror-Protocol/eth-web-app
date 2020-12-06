@@ -6,8 +6,8 @@ import { placeholder, step, validate as v } from "../libs/formHelpers"
 import { renderBalance } from "../libs/formHelpers"
 import FormGroup from "../components/FormGroup"
 
-import useBalance from "../database/useBalance"
-import useContract from "../database/useContract"
+import { useBalance } from "../database/balance"
+import { useContract } from "../database/contract"
 import FormContainer from "../forms/FormContainer"
 import { fetchReceipt } from "./Result"
 
@@ -15,7 +15,7 @@ enum Key {
   value = "value",
 }
 
-interface Props extends Required<ListedItem> {
+interface Props extends ListedAsset {
   type: "stake" | "unstake"
   tab: Tab
 }

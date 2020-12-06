@@ -4,8 +4,8 @@ import Card from "../../components/Card"
 import Table from "../../components/Table"
 import Delisted from "../../components/Delisted"
 import DashboardActions from "../../components/DashboardActions"
-import useWhitelist from "../../database/useWhitelist"
-import useBalances from "../../database/useBalances"
+import { useWhitelist } from "../../database/assets"
+import { useBalances } from "../../database/balances"
 
 const Holdings = () => {
   const whitelist = useWhitelist()

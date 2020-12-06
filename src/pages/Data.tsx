@@ -1,16 +1,16 @@
 import Page from "../components/Page"
 import Card from "../components/Card"
 import WithSuspense from "../containers/WithSuspense"
-import Pool from "./info/Pool"
+import APR from "./info/APR"
 
-const Info = () => (
+const Data = () => (
   <Page>
-    <Card title="Pool">
+    <Card title="APR">
       <WithSuspense>
-        <Pool />
+        <APR />
       </WithSuspense>
     </Card>
   </Page>
 )
 
-export default Info
+export default Data

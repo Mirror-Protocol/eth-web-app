@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil"
 import AppFooter from "../components/AppFooter"
-import { networkNameQuery } from "../database/selectors"
+import { networkNameQuery } from "../database/network"
 
 const Footer = () => {
   const name = useRecoilValue(networkNameQuery)

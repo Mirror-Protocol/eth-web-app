@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil"
 import TxLink from "../components/TxLink"
-import { etherscanQuery } from "../database/selectors"
+import { etherscanQuery } from "../database/network"
 
 const TxHash = ({ children: hash }: { children: string }) => {
   const etherscan = useRecoilValue(etherscanQuery("tx"))

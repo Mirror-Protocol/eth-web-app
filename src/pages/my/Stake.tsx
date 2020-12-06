@@ -6,14 +6,14 @@ import Card from "../../components/Card"
 import Table from "../../components/Table"
 import Delisted from "../../components/Delisted"
 import DashboardActions from "../../components/DashboardActions"
-import { useListed } from "../../database/useWhitelist"
-import useBalances from "../../database/useBalances"
-import { rewardsQuery } from "../../database/selectors"
+import { useListedAssets } from "../../database/assets"
+import { useAssetsBalances } from "../../database/balances"
+import { rewardsQuery } from "../../database/rewards"
 
 const Stake = () => {
-  const listedAll = useListed(true)
-  const stakableBalances = useBalances("lp")
-  const stakedBalances = useBalances("pool")
+  const listedAll = useListedAssets("all")
+  const stakableBalances = useAssetsBalances("lp")
+  const stakedBalances = useAssetsBalances("pool")
   const rewards = useRecoilValue(rewardsQuery)
   const data = [stakableBalances, stakedBalances, rewards]
 
@@ -23,7 +23,7 @@ const Stake = () => {
 
   const dataSource = listedAll
     .filter(({ token }) =>
-      data.some((balances) => gt(balances[token].contents, 0))
+      data.some((balances) => gt(balances[token].contents as string, 0))
     )
     .map((item) => {
       const { token } = item

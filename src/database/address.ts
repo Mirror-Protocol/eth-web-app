@@ -7,9 +7,7 @@ export const useTruncated = () => {
   return truncate(value, [6, 4])
 }
 
-const useAddress = () => {
+export const useAddress = () => {
   const value = useRecoilValue(addressState)
   return value
 }
-
-export default useAddress

@@ -3,8 +3,8 @@ import { useRecoilValue } from "recoil"
 import { useQuery, ApolloClient, InMemoryCache } from "@apollo/client"
 import AIRDROP from "../airdrop/gqldocs"
 import { MAINNET } from "../constants"
-import useAddress from "../database/useAddress"
-import { networkNameQuery } from "../database/selectors"
+import { useAddress } from "../database/address"
+import { networkNameQuery } from "../database/network"
 
 const useQueryAirdrop = () => {
   const [airdrop, setAirdrop] = useState<Airdrop>()

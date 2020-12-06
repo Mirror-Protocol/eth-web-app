@@ -3,8 +3,8 @@ import { ethers } from "ethers"
 
 import { gt } from "../libs/math"
 import { formatAsset } from "../libs/parse"
-import useContract from "../database/useContract"
-import { airdropTokenQuery } from "../database/selectors"
+import { useContract } from "../database/contract"
+import { airdropTokenQuery } from "../database/airdrop"
 import { useQueryAirdrop } from "../hooks"
 import FormContainer from "./FormContainer"
 

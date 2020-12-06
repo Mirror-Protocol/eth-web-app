@@ -1,8 +1,8 @@
 import { useRecoilValue } from "recoil"
 import ConnectedButton from "../components/ConnectedButton"
 import ConnectedInfo from "../components/ConnectedInfo"
-import useAddress, { useTruncated } from "../database/useAddress"
-import { etherscanQuery } from "../database/selectors"
+import { useAddress, useTruncated } from "../database/address"
+import { etherscanQuery } from "../database/network"
 
 const Connected = () => {
   const address = useAddress()
