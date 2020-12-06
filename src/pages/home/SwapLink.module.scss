@@ -11,8 +11,7 @@
 
   color: $light;
   font-size: 16px;
-  height: 70px;
-  padding: 0 $gutter;
+  padding: 10px $gutter;
   margin-bottom: $gutter;
 }
 
@@ -35,10 +34,14 @@
 }
 
 .flex {
-  @include flex;
+  text-align: left;
 
-  h1 {
-    margin-left: 20px;
+  @include desktop {
+    @include flex;
+
+    h1 {
+      margin-left: 20px;
+    }
   }
 
   i {

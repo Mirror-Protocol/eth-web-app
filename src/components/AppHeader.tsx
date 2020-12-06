@@ -49,7 +49,7 @@ const AppHeader = ({ logo, menu, connect, border }: Props) => {
           </section>
         </div>
 
-        {border && <hr className={styles.hr} />}
+        {border && !isOpen && <hr className={styles.hr} />}
       </Container>
     </header>
   )

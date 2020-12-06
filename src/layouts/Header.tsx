@@ -6,8 +6,8 @@ const Header = () => (
   <AppHeader
     logo={<Logo height={40} />}
     menu={[
-      { attrs: { to: "/", children: "Stake" }, desktopOnly: true },
-      { attrs: { to: "/my", children: "My Page" }, desktopOnly: true },
+      { attrs: { to: "/", children: "Stake" } },
+      { attrs: { to: "/my", children: "My Page" } },
     ]}
     connect={<Connect />}
     border
