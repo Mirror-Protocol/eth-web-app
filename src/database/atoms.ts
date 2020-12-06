@@ -10,7 +10,7 @@ export const providerState = atom({
   key: "provider",
   default: window.ethereum
     ? new ethers.providers.Web3Provider(window.ethereum)
-    : undefined,
+    : ethers.getDefaultProvider("homestead"),
 })
 
 export const indexState = atom({

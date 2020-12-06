@@ -37,7 +37,7 @@ const FormContainer: FC<Props> = ({ tx, ...props }) => {
   const submit = async () => {
     try {
       setSubmitted(true)
-      const signer = provider!.getSigner()
+      const signer = (provider as ethers.providers.Web3Provider).getSigner()
       const hash = await tx(signer)
       setHash(hash)
     } catch (error) {

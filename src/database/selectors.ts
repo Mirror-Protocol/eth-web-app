@@ -113,6 +113,7 @@ export const contractQuery = selectorFamily({
       return
     }
   },
+  dangerouslyAllowMutability: true,
 })
 
 /* price */
