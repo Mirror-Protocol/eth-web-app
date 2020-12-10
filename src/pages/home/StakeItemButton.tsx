@@ -22,7 +22,11 @@ const StakeItemButton: FC<Props> = ({ to, href, hidden, children }) => {
   const content = (
     <>
       {children}
-      {to ? <Icon name="chevron_right" size={18} /> : <Uniswap height={16} />}
+      {to ? (
+        <Icon name="chevron_right" size={18} />
+      ) : (
+        <Uniswap width={15} height={16} />
+      )}
     </>
   )
 

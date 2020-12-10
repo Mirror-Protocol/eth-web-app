@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { FC, useState } from "react"
 import { Dictionary } from "ramda"
+import classNames from "classnames"
 import Tooltip from "../../components/Tooltip"
 import { DECIMALS } from "../../constants"
 
@@ -40,7 +41,7 @@ const icons: Dictionary<string> = {
   mVIXY: VIXY,
 }
 
-const AddToMetamask = ({ token, symbol }: ListedItem) => {
+const AddToMetamask: FC<ListedItem> = ({ token, symbol, children }) => {
   const [, setAdded] = useState(false)
 
   const addToMetamask = async () => {
@@ -66,14 +67,20 @@ const AddToMetamask = ({ token, symbol }: ListedItem) => {
 
   const size = { width: 20, height: 20 }
   const tooltip = `Add ${symbol} to Metamask`
+  const icon = <img {...size} src={Metamask} alt={tooltip} />
 
-  return (
+  return children ? (
+    <button className={styles.button} onClick={addToMetamask}>
+      <span className={styles.text}>{children}</span>
+      {icon}
+    </button>
+  ) : (
     <Tooltip
-      className={styles.button}
+      className={classNames(styles.button, styles.standalone)}
       onClick={addToMetamask}
       content={tooltip}
     >
-      <img {...size} src={Metamask} alt={tooltip} />
+      {icon}
     </Tooltip>
   )
 }

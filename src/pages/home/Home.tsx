@@ -1,12 +1,12 @@
 import Page from "../../components/Page"
 import HomeHeader from "./HomeHeader"
 import StakeList from "./StakeList"
-import SwapLink from "./SwapLink"
+import WhereToBuy from "./WhereToBuy"
 
 const Home = () => (
   <Page>
     <HomeHeader />
-    <SwapLink />
+    <WhereToBuy />
     <StakeList />
   </Page>
 )
