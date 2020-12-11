@@ -1,17 +1,12 @@
-import { useRecoilValue } from "recoil"
-import { format } from "../../libs/parse"
+import WithSuspense from "../../containers/WithSuspense"
+import TextLoading from "../../containers/TextLoading"
 import Doctor from "../../images/Doctor.png"
-import { infoQuery } from "../../database/info"
-import { itemBySymbolQuery } from "../../database/asset"
+import MIRPrice from "./MIRPrice"
 import styles from "./HomeHeader.module.scss"
 
 const DOCTOR_SIZE = { width: 450, height: 348 }
 
 const StakeHomeHeader = () => {
-  const info = useRecoilValue(infoQuery)
-  const { token } = useRecoilValue(itemBySymbolQuery("MIR"))!
-  const { price } = info[token]
-
   return (
     <div className={styles.component}>
       <section className={styles.main}>
@@ -25,7 +20,9 @@ const StakeHomeHeader = () => {
         <footer className={styles.summary}>
           <article className={styles.item}>
             <h1 className={styles.title}>MIR Price</h1>
-            <section className={styles.content}>{format(price)} UST</section>
+            <section className={styles.content}>
+              <WithSuspense fallback={<TextLoading />} content={<MIRPrice />} />
+            </section>
           </article>
         </footer>
       </section>

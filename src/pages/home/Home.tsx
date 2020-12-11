@@ -1,4 +1,5 @@
 import Page from "../../components/Page"
+import WithSuspense from "../../containers/WithSuspense"
 import HomeHeader from "./HomeHeader"
 import StakeList from "./StakeList"
 import WhereToBuy from "./WhereToBuy"
@@ -7,7 +8,7 @@ const Home = () => (
   <Page>
     <HomeHeader />
     <WhereToBuy />
-    <StakeList />
+    <WithSuspense content={<StakeList />} />
   </Page>
 )
 

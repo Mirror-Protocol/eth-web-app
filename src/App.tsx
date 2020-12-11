@@ -14,7 +14,7 @@ const App = () => {
   useRefreshOnPathnameChange()
 
   return (
-    <WithSuspense fallback={<Null />}>
+    <WithSuspense noFallback>
       <Banner />
       <Header />
       <Container>{routes}</Container>
@@ -25,6 +25,3 @@ const App = () => {
 }
 
 export default App
-
-/* fallback */
-const Null = () => null
