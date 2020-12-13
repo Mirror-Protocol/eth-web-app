@@ -11,6 +11,7 @@
 #   @types/classnames \
 #   @types/numeral \
 #   @types/ramda \
+#   @types/react-router-dom \
 #   bignumber.js \
 #   classnames \
 #   graphql \

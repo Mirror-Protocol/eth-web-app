@@ -1,0 +1,12 @@
+@import "mixins";
+
+.banner {
+  @include flex;
+  font-size: 12px;
+  margin-top: 50px;
+  white-space: pre;
+
+  i {
+    margin-right: 5px;
+  }
+}

@@ -1,7 +1,10 @@
 import { ethers } from "ethers"
 import { useEffect, useState } from "react"
 import Wait, { STATUS } from "../components/Wait"
+import Icon from "../components/Icon"
+import MirrorLink from "../containers/MirrorLink"
 import TxHash from "./TxHash"
+import styles from "./Result.module.scss"
 
 const CONFIRMATIONS = 1
 export const fetchReceipt = async (hash: string) => {
@@ -65,7 +68,15 @@ const Result = ({ hash, error, onFail }: Props) => {
         : undefined,
   }
 
-  return <Wait {...wait}>{error?.message ?? receiptError?.message}</Wait>
+  return (
+    <Wait {...wait}>
+      {error?.message ?? receiptError?.message}
+      <p className={styles.banner}>
+        <Icon name="info" size={12} />
+        Transactions are faster at <MirrorLink />
+      </p>
+    </Wait>
+  )
 }
 
 export default Result
