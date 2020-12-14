@@ -1,5 +1,7 @@
+import { HTMLAttributes } from "react"
 import { Link, LinkProps } from "react-router-dom"
 import Tippy, { TippyProps } from "@tippyjs/react"
+import ExtLink from "./ExtLink"
 import { DefaultTippyProps } from "./Tooltip"
 import Icon from "./Icon"
 import styles from "./DashboardActions.module.scss"
@@ -10,17 +12,22 @@ const DropdownTippyProps: TippyProps = {
   trigger: "click",
 }
 
-const DashboardActions = ({ list }: { list: LinkProps[] }) => {
+type Item = LinkProps | HTMLAttributes<HTMLAnchorElement>
+
+const DashboardActions = ({ list }: { list: Item[] }) => {
   const renderList = () => (
     <ul className={styles.dropdown}>{list.map(renderItem)}</ul>
   )
 
-  const renderItem = (item: LinkProps, index: number) =>
-    item.to && (
-      <li key={index}>
+  const renderItem = (item: Item, index: number) => (
+    <li key={index}>
+      {"to" in item ? (
         <Link {...item} className={styles.link} />
-      </li>
-    )
+      ) : (
+        <ExtLink {...item} className={styles.link} />
+      )}
+    </li>
+  )
 
   return (
     <Tippy {...DropdownTippyProps} render={renderList}>

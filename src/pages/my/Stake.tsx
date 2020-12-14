@@ -9,12 +9,14 @@ import DashboardActions from "../../components/DashboardActions"
 import { useListedAssets } from "../../database/assets"
 import { useAssetsBalances } from "../../database/balances"
 import { rewardsQuery } from "../../database/rewards"
+import { getUniswapLinksQuery } from "../../database/uniswap"
 
 const Stake = () => {
   const listedAll = useListedAssets("all")
   const stakableBalances = useAssetsBalances("lp")
   const stakedBalances = useAssetsBalances("pool")
   const rewards = useRecoilValue(rewardsQuery)
+  const getUniswapLinks = useRecoilValue(getUniswapLinksQuery)
   const data = [stakableBalances, stakedBalances, rewards]
 
   const loading = data.some((balances) =>
@@ -75,10 +77,12 @@ const Stake = () => {
               dataIndex: "token",
               render: (token) => {
                 const path = `/stake/${token}`
+                const { remove } = getUniswapLinks(token)
                 const list = [
                   { to: `${path}#stake`, children: "Stake" },
                   { to: `${path}#unstake`, children: "Unstake" },
                   { to: `/claim/${token}`, children: "Claim" },
+                  { href: remove, children: "Remove liquidity" },
                 ]
 
                 return <DashboardActions list={list} />
