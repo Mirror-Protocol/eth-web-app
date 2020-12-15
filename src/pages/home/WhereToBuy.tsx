@@ -30,7 +30,7 @@ const WhereToBuy = () => {
     <BuyLinks
       type="eth"
       className={styles.component}
-      action={<AddToMetamask {...ust}>Add UST to Metamask</AddToMetamask>}
+      action={<AddToMetamask {...ust}>Add UST to MetaMask</AddToMetamask>}
       links={[uniswap]}
     />
   )

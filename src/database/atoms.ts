@@ -6,12 +6,12 @@ export const addressState = atom({
   default: "",
 })
 
-const projectId = "87ae9df0054a4467b5de8501e80bc07c"
-export const providerState = atom({
+type Provider = ethers.providers.Web3Provider | ethers.providers.InfuraProvider
+export const infuraId = "87ae9df0054a4467b5de8501e80bc07c"
+export const providerState = atom<Provider>({
   key: "provider",
-  default: window.ethereum
-    ? new ethers.providers.Web3Provider(window.ethereum)
-    : new ethers.providers.InfuraProvider("homestead", projectId),
+  default: new ethers.providers.InfuraProvider("homestead", infuraId),
+  dangerouslyAllowMutability: true,
 })
 
 export const indexState = atom({

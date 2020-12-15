@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useRecoilValue } from "recoil"
 import { ethers } from "ethers"
 
 import useForm from "../libs/useForm"
@@ -6,10 +7,10 @@ import { placeholder, step, validate as v } from "../libs/formHelpers"
 import { renderBalance } from "../libs/formHelpers"
 import FormGroup from "../components/FormGroup"
 
+import { providerState } from "../database/atoms"
 import { useBalance } from "../database/balance"
 import { useContract } from "../database/contract"
 import FormContainer from "../forms/FormContainer"
-import { fetchReceipt } from "./Result"
 
 enum Key {
   value = "value",
@@ -57,12 +58,14 @@ const Stake = ({ type, tab, symbol, lp, pool }: Props) => {
   const lpContract = useContract(lp)
   const poolContract = useContract(pool)
 
+  const provider = useRecoilValue(providerState)
+
   const stake = async (signer: ethers.providers.JsonRpcSigner) => {
     const lpWithSigner = lpContract!.connect(signer)
     const approve = await lpWithSigner.approve(pool, amount)
     setLabel("Approving...")
 
-    await fetchReceipt(approve.hash)
+    await provider.waitForTransaction(approve.hash)
     setLabel("Approved!")
 
     const poolWithSigner = poolContract!.connect(signer)

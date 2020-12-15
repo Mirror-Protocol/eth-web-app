@@ -1,17 +1,12 @@
-import { ethers } from "ethers"
 import { useEffect, useState } from "react"
+import { useRecoilValue } from "recoil"
+import { ethers } from "ethers"
 import Wait, { STATUS } from "../components/Wait"
 import Icon from "../components/Icon"
 import MirrorLink from "../containers/MirrorLink"
+import { providerState } from "../database/atoms"
 import TxHash from "./TxHash"
 import styles from "./Result.module.scss"
-
-const CONFIRMATIONS = 1
-export const fetchReceipt = async (hash: string) => {
-  const provider = new ethers.providers.Web3Provider(window.ethereum)
-  const receipt = await provider.waitForTransaction(hash, CONFIRMATIONS)
-  return receipt
-}
 
 interface Props {
   hash: string
@@ -23,11 +18,12 @@ const Result = ({ hash, error, onFail }: Props) => {
   /* fetch receipt */
   const [receipt, setReceipt] = useState<ethers.providers.TransactionReceipt>()
   const [receiptError, setReceiptError] = useState<Error>()
+  const provider = useRecoilValue(providerState)
 
   useEffect(() => {
     const wait = async () => {
       try {
-        const receipt = await fetchReceipt(hash)
+        const receipt = await provider.waitForTransaction(hash)
         setReceipt(receipt)
       } catch (error) {
         setReceiptError(error)
@@ -35,15 +31,14 @@ const Result = ({ hash, error, onFail }: Props) => {
     }
 
     wait()
-  }, [hash])
+  }, [hash, provider])
 
   /* status */
-  const status =
-    error || receiptError
-      ? STATUS.FAILURE
-      : receipt
-      ? STATUS.SUCCESS
-      : STATUS.LOADING
+  const status = error
+    ? STATUS.FAILURE
+    : receipt
+    ? STATUS.SUCCESS
+    : STATUS.LOADING
 
   /* render */
   const renderHash = () => (

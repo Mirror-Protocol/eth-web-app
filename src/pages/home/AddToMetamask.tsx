@@ -4,7 +4,7 @@ import classNames from "classnames"
 import Tooltip from "../../components/Tooltip"
 import { DECIMALS } from "../../constants"
 
-import Metamask from "../../images/Metamask.png"
+import MetaMask from "../../images/Metamask.png"
 import AMZN from "../../images/icons/AMZN.png"
 import AAPL from "../../images/icons/AAPL.png"
 import BABA from "../../images/icons/BABA.png"
@@ -66,8 +66,8 @@ const AddToMetamask: FC<ListedItem> = ({ token, symbol, children }) => {
   }
 
   const size = { width: 20, height: 20 }
-  const tooltip = `Add ${symbol} to Metamask`
-  const icon = <img {...size} src={Metamask} alt={tooltip} />
+  const tooltip = `Add ${symbol} to MetaMask`
+  const icon = <img {...size} src={MetaMask} alt={tooltip} />
 
   return children ? (
     <button className={styles.button} onClick={addToMetamask}>

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import useOnboard from "../../ethereum/useOnboard"
 import { useAddress } from "../../database/address"
+import { useSelectWalletModal } from "../../database/selectWalletModal"
 
 const useOpenToConnect = (href?: string) => {
-  const { onClick } = useOnboard()
+  const { open } = useSelectWalletModal()
   const address = useAddress()
   const [clicked, setClicked] = useState(false)
 
@@ -13,7 +13,7 @@ const useOpenToConnect = (href?: string) => {
   }, [clicked, href])
 
   const handleClick = () => {
-    onClick()
+    open()
     setClicked(true)
   }
 

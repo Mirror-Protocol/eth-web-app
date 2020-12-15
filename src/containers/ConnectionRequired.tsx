@@ -1,12 +1,12 @@
 import Empty from "../components/Empty"
-import useOnboard from "../ethereum/useOnboard"
+import { useSelectWalletModal } from "../database/selectWalletModal"
 
 const ConnectionRequired = () => {
-  const attrs = useOnboard()
+  const { open } = useSelectWalletModal()
 
   return (
     <Empty>
-      <button {...attrs} />
+      <button onClick={open}>Connect</button>
     </Empty>
   )
 }

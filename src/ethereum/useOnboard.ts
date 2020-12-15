@@ -1,7 +1,8 @@
 import { useRef, useState, useEffect } from "react"
-import { useRecoilState } from "recoil"
+import { useRecoilState, useSetRecoilState } from "recoil"
+import { ethers } from "ethers"
 import MetaMaskOnboarding from "@metamask/onboarding"
-import { addressState } from "../database/atoms"
+import { addressState, providerState } from "../database/atoms"
 
 enum ButtonText {
   ONBOARD = "Install MetaMask",
@@ -19,6 +20,7 @@ const useOnboard = () => {
   const [buttonText, setButtonText] = useState<ButtonText>(ButtonText.ONBOARD)
   const [disabled, setDisabled] = useState(false)
   const [account, setAccount] = useRecoilState(addressState)
+  const setProvider = useSetRecoilState(providerState)
 
   useEffect(() => {
     if (!onboarding.current) {
@@ -44,6 +46,7 @@ const useOnboard = () => {
       const method = "eth_requestAccounts"
       const accounts = await window.ethereum?.request({ method })
       accounts && setAccount(accounts[0])
+      setProvider(new ethers.providers.Web3Provider(window.ethereum))
     } else {
       onboarding.current?.startOnboarding()
     }
