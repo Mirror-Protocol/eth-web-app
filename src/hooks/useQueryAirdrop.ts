@@ -23,7 +23,7 @@ const useQueryAirdrop = () => {
 
   /* query */
   useQuery<{ airdrop: Airdrop[] }>(AIRDROP, {
-    variables: { address, network: "ETH" },
+    variables: { address: address.toLowerCase(), network: "ETH" },
     client,
     onCompleted: (data) => setAirdrop(data?.airdrop[0]),
     skip: !address || !!airdrop,
