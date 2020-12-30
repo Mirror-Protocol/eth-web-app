@@ -4,7 +4,7 @@ import classNames from "classnames"
 import Tooltip from "../../components/Tooltip"
 import { DECIMALS } from "../../constants"
 
-import MetaMask from "../../images/Metamask.png"
+import MetaMask from "../../images/wallets/Metamask.png"
 import AMZN from "../../images/icons/AMZN.png"
 import AAPL from "../../images/icons/AAPL.png"
 import BABA from "../../images/icons/BABA.png"
