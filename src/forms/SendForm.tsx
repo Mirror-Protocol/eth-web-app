@@ -64,6 +64,10 @@ const Send = () => {
   })
 
   /* submit */
+  const messages = [
+    "Please double check if the above transaction requires a memo",
+  ]
+
   const disabled = invalid
 
   const contract = useContract(token)
@@ -79,7 +83,7 @@ const Send = () => {
   }
 
   const tab = { tabs: ["Send"], current: "Send" }
-  const container = { tab, attrs, disabled, tx }
+  const container = { tab, attrs, messages, disabled, tx }
 
   return (
     <FormContainer {...container}>
