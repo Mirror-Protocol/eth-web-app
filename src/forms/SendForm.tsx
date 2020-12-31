@@ -64,9 +64,7 @@ const Send = () => {
   })
 
   /* submit */
-  const messages = [
-    "Please double check if the above transaction requires a memo",
-  ]
+  const messages = ["Double check if the above transaction requires a memo"]
 
   const disabled = invalid
 
