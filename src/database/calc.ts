@@ -31,8 +31,3 @@ export const apr = (params: Params) => {
 
   return denominator.gt(0) ? numerator.div(denominator).toString() : "0"
 }
-
-export const apy = (apr: string) => {
-  const daily = new BigNumber(apr).div(365).plus(1)
-  return daily.pow(365).minus(1).toString()
-}

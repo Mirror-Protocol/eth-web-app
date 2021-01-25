@@ -7,7 +7,6 @@ import StakeItemCard from "../../components/StakeItemCard"
 
 import { uniswapLinksQuery } from "../../database/uniswap"
 import { balanceQuery } from "../../database/balance"
-import { apy } from "../../database/calc"
 import AddToMetamask from "./AddToMetamask"
 import StakeItemButton from "./StakeItemButton"
 
@@ -22,7 +21,7 @@ const StakeItem = (props: AssetInfo) => {
     symbol,
     stakable: stakable ? gt(stakable, 0) : false,
     staked: staked ? gt(staked, 0) : false,
-    apy: percent(apy(apr)),
+    apr: percent(apr),
     totalStaked: formatAsset(lpStaked, "LP", { integer: true }),
     price: `${format(price)} UST`,
     emphasize: symbol === "MIR",
