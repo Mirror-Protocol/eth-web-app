@@ -4,7 +4,7 @@ import { addressState } from "./atoms"
 
 export const selectWalletModalState = atom({
   key: "selectWalletModal",
-  default: false,
+  default: true,
 })
 
 export const useSelectWalletModal = () => {

@@ -45,7 +45,7 @@ const Send = () => {
     [Key.to]: {
       label: "Send to",
       input: {
-        placeholder: "Ethereum address or Terra address",
+        placeholder: "Terra address",
         autoFocus: true,
       },
       unit: isTerra && "Terra",

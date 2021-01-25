@@ -23,6 +23,14 @@ export const networkNameQuery = selector({
   },
 })
 
+export const chainIdQuery = selector({
+  key: "chainId",
+  get: ({ get }) => {
+    const network = get(networkQuery)
+    return network?.chainId ?? 56
+  },
+})
+
 export const etherscanQuery = selectorFamily({
   key: "etherscan",
   get: (path: "address" | "tx") => ({ get }) => {

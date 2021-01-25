@@ -10,8 +10,8 @@ import styles from "./AppHeader.module.scss"
 const cx = classNames.bind(styles)
 
 interface Props {
-  logo: ReactNode
-  menu: MenuItem[]
+  logo?: ReactNode
+  menu?: MenuItem[]
   connect: ReactNode
   border?: boolean
   testnet?: boolean
@@ -21,7 +21,7 @@ const AppHeader = ({ logo, menu, connect, border, testnet }: Props) => {
   const { key } = useLocation()
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
-  const hideToggle = menu.every((item) => item.desktopOnly)
+  const hideToggle = menu?.every((item) => item.desktopOnly)
 
   useEffect(() => {
     setIsOpen(false)
@@ -48,7 +48,7 @@ const AppHeader = ({ logo, menu, connect, border, testnet }: Props) => {
           </section>
 
           <section className={styles.support}>
-            <Menu list={menu} key={key} />
+            {menu && <Menu list={menu} key={key} />}
             <div className={styles.connect}>{connect}</div>
           </section>
         </div>

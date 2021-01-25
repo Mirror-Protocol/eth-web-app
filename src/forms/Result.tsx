@@ -44,9 +44,7 @@ const Result = ({ hash, error, onFail }: Props) => {
   const renderHash = () => (
     <article>
       <h1>Transaction Submitted</h1>
-      <p>
-        View on Etherscan: <TxHash>{hash}</TxHash>
-      </p>
+      <p>{hash}</p>
     </article>
   )
 

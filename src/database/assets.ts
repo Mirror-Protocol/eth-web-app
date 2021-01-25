@@ -1,16 +1,20 @@
 import { selector, selectorFamily, useRecoilValue } from "recoil"
 import { Dictionary } from "ramda"
-import homestead from "../whitelist/homestead.json"
-import ropsten from "../whitelist/ropsten.json"
+import mainnet from "../whitelist/mainnet.json"
+import testnet from "../whitelist/testnet.json"
 import { isAsset } from "../types/isItem"
-import { networkNameQuery } from "./network"
+import { chainIdQuery } from "./network"
 
 export const whitelistQuery = selector<Dictionary<ListedItem>>({
   key: "whitelist",
   get: ({ get }) => {
-    const name = get(networkNameQuery)
-    const byNetwork: Dictionary<Dictionary<ListedItem>> = { homestead, ropsten }
-    return byNetwork[name] ?? {}
+    const chainId = get(chainIdQuery)
+    const byNetwork: Dictionary<Dictionary<ListedItem>> = {
+      56: mainnet,
+      97: testnet,
+    }
+
+    return byNetwork[chainId] ?? {}
   },
 })
 
