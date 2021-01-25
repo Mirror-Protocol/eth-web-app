@@ -18,7 +18,7 @@ export interface Props {
   staked: boolean
   stakable: boolean
 
-  apr: ReactNode
+  apy: ReactNode
   totalStaked: ReactNode
   price?: ReactNode
 
@@ -29,7 +29,7 @@ export interface Props {
 
 const StakeItemCard: FC<Props> = ({ token, symbol, name, to, ...item }) => {
   const { staked, stakable } = item
-  const { price, apr, totalStaked, action, emphasize, children } = item
+  const { price, apy, totalStaked, action, emphasize, children } = item
 
   const badges = [
     ...insertIf(staked, { label: "Staked", color: "blue" }),
@@ -37,7 +37,7 @@ const StakeItemCard: FC<Props> = ({ token, symbol, name, to, ...item }) => {
   ]
 
   const stats = [
-    { title: "APR", content: apr },
+    { title: "APY", content: apy },
     { title: "Total Staked", content: totalStaked },
     { title: "Price", content: price },
   ].filter(({ content }) => content)
