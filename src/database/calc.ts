@@ -3,7 +3,7 @@ import { SMALLEST } from "../constants"
 
 export const getMIRAnnualRewards = (now = Date.now(), isMIR = false) => {
   const GENESIS = 1607022000000
-  const YEAR_TO_MILLISECONDS = 31556952000
+  const YEAR_TO_MILLISECONDS = 31536000000
   const rewards = [3431250, 1715625, 857813, 428906]
   const index = Math.max(0, Math.floor((now - GENESIS) / YEAR_TO_MILLISECONDS))
   const reward = rewards[index]
