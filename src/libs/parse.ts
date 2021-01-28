@@ -10,8 +10,7 @@ type Formatter = (
 
 const rm = BigNumber.ROUND_DOWN
 
-export const dp = (symbol?: string) =>
-  !symbol || lookupSymbol(symbol) === "UST" ? 3 : 6
+export const dp = (symbol?: string) => (!symbol ? 3 : 6)
 
 export const validateDp = (value: string, symbol?: string) =>
   new BigNumber(value).times(new BigNumber(10).pow(dp(symbol))).isInteger()
