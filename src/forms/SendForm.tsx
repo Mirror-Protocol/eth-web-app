@@ -4,6 +4,7 @@ import { ethers } from "ethers"
 import { AccAddress } from "@terra-money/terra.js"
 
 import useForm from "../libs/useForm"
+import { lookup } from "../libs/parse"
 import { placeholder, step, validate as v } from "../libs/formHelpers"
 import { renderBalance } from "../libs/formHelpers"
 import FormGroup from "../components/FormGroup"
@@ -34,7 +35,7 @@ const Send = () => {
   /* form:hook */
   const initial = { [Key.to]: "", [Key.value]: "" }
   const form = useForm(initial, validate)
-  const { values, getFields, attrs, invalid } = form
+  const { values, setValue, getFields, attrs, invalid } = form
   const { to, value } = values
   const decoded = decodeTerraAddress(to)
   const amount = ethers.utils.parseEther(value || "0")
@@ -59,6 +60,7 @@ const Send = () => {
         placeholder: placeholder(symbol),
       },
       unit: symbol,
+      max: () => setValue(Key.value, lookup(balance, symbol)),
       help: renderBalance(balance, symbol),
     },
   })

@@ -3,6 +3,7 @@ import { useRecoilValue } from "recoil"
 import { ethers } from "ethers"
 
 import useForm from "../libs/useForm"
+import { lookup } from "../libs/parse"
 import { placeholder, step, validate as v } from "../libs/formHelpers"
 import { renderBalance } from "../libs/formHelpers"
 import FormGroup from "../components/FormGroup"
@@ -33,7 +34,7 @@ const Stake = ({ type, tab, symbol, lp, pool }: Props) => {
   /* form:hook */
   const initial = { [Key.value]: "" }
   const form = useForm(initial, validate)
-  const { values, getFields, attrs, invalid } = form
+  const { values, setValue, getFields, attrs, invalid } = form
   const { value } = values
   const amount = ethers.utils.parseEther(value || "0")
 
@@ -47,6 +48,7 @@ const Stake = ({ type, tab, symbol, lp, pool }: Props) => {
         placeholder: placeholder(symbol),
       },
       unit: "LP",
+      max: () => setValue(Key.value, lookup(balance, symbol)),
       help: renderBalance(balance, symbol),
     },
   })
