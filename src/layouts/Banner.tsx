@@ -16,8 +16,7 @@ const Banner = () => {
         <section className={styles.main}>
           <h1 className={styles.title}>Need something faster?</h1>
           <p className={styles.content}>
-            Use <MirrorLink /> for 10x speed, lower transaction fee and higher
-            APR!
+            Use <MirrorLink /> for 10x speed, lower transaction fee!
           </p>
         </section>
 
