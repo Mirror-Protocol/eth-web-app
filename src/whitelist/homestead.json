@@ -29,6 +29,12 @@
     "token": "0x156B36ec68FdBF84a925230BA96cb1Ca4c4bdE45",
     "status": "LISTED"
   },
+  "0x0F3ADC247E91c3c50bC08721355A41037E89Bc20": {
+    "symbol": "ANC",
+    "name": "ANC",
+    "token": "0x0F3ADC247E91c3c50bC08721355A41037E89Bc20",
+    "status": "LISTED"
+  },
   "0x09a3EcAFa817268f77BE1283176B946C4ff2E608": {
     "symbol": "MIR",
     "name": "Mirror",
