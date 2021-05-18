@@ -1,7 +1,5 @@
 @import "mixins";
 
-$mirror: #1eb2ff;
-
 .banner {
   @include flex(flex-start);
 
@@ -12,14 +10,9 @@ $mirror: #1eb2ff;
   background-color: #2b292e;
 }
 
-.icon {
-  fill: $mirror;
-}
-
 .main {
   flex: 1;
   color: $light;
-  margin-left: 30px;
 }
 
 .title {
@@ -31,8 +24,9 @@ $mirror: #1eb2ff;
 .content {
   font-size: 12px;
 
-  a {
-    @include link($mirror, $mirror);
+  a,
+  button {
+    @include link($blue, $blue);
   }
 }
 
