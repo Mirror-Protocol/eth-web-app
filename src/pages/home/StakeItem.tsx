@@ -1,5 +1,7 @@
 import { useRecoilValue } from "recoil"
 
+import delist from "../../whitelist/delist.json"
+
 import { gt } from "../../libs/math"
 import { format, formatAsset } from "../../libs/parse"
 import { percent } from "../../libs/num"
@@ -27,11 +29,19 @@ const StakeItem = (props: AssetInfo) => {
     emphasize: symbol === "MIR",
   }
 
+  const isDelisted = Object.keys(delist).includes(symbol)
+
   return (
     <StakeItemCard {...item} action={<AddToMetamask {...props} />}>
       <StakeItemButton href={swap}>Buy token</StakeItemButton>
-      <StakeItemButton href={add}>Provide liquidity</StakeItemButton>
-      <StakeItemButton to={`/stake/${token}`}>Stake LP</StakeItemButton>
+
+      <StakeItemButton href={add} delisted={isDelisted}>
+        Provide liquidity
+      </StakeItemButton>
+
+      <StakeItemButton to={`/stake/${token}`} delisted={isDelisted}>
+        Stake LP
+      </StakeItemButton>
     </StakeItemCard>
   )
 }

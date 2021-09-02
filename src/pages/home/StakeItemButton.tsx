@@ -11,14 +11,15 @@ const cx = classNames.bind(styles)
 interface Props {
   to?: string
   href?: string
-  disabled?: string
+  delisted?: boolean
   hidden?: boolean
 }
 
-const StakeItemButton: FC<Props> = ({ to, href, hidden, children }) => {
+const StakeItemButton: FC<Props> = (props) => {
+  const { to, href, hidden, children, delisted } = props
   const handleClick = useOpenToConnect(href)
 
-  const className = cx(styles.button, { hidden })
+  const className = cx(styles.button, { hidden, delisted })
   const content = (
     <>
       {children}
@@ -30,7 +31,9 @@ const StakeItemButton: FC<Props> = ({ to, href, hidden, children }) => {
     </>
   )
 
-  return to ? (
+  return delisted ? (
+    <span className={className}>{content}</span>
+  ) : to ? (
     <Link className={className} to={to}>
       {content}
     </Link>
