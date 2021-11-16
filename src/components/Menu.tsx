@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom"
-import classNames from "classnames"
+import classNames from "classnames/bind"
 import styles from "./Menu.module.scss"
+
+const cx = classNames.bind(styles)
 
 const Menu = ({ list }: { list: MenuItem[] }) => {
   return (
@@ -13,9 +15,9 @@ const Menu = ({ list }: { list: MenuItem[] }) => {
           >
             <NavLink
               {...attrs}
-              exact={attrs.to === "/"}
-              className={styles.link}
-              activeClassName={styles.active}
+              className={({ isActive }) =>
+                cx(styles.link, { active: isActive })
+              }
             />
           </li>
         )

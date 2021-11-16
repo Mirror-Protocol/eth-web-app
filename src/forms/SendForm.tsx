@@ -1,5 +1,4 @@
-import { useRouteMatch } from "react-router-dom"
-import bech32 from "bech32"
+import { bech32 } from "bech32"
 import { ethers } from "ethers"
 import { AccAddress } from "@terra-money/terra.js"
 
@@ -13,6 +12,7 @@ import { useSymbol } from "../database/asset"
 import { useBalance } from "../database/balance"
 import { useContract } from "../database/contract"
 import FormContainer from "../forms/FormContainer"
+import useTokenParam from "./useTokenParam"
 
 enum Key {
   to = "to",
@@ -21,8 +21,7 @@ enum Key {
 
 const Send = () => {
   /* context */
-  const { params } = useRouteMatch<{ token: string }>()
-  const { token } = params
+  const token = useTokenParam()
   const symbol = useSymbol(token)
   const balance = useBalance(token)
 

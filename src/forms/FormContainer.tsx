@@ -41,7 +41,7 @@ const FormContainer: FC<Props> = ({ tx, ...props }) => {
       const hash = await tx(signer)
       setHash(hash)
     } catch (error) {
-      setError(error)
+      setError(error as Error)
     }
   }
 

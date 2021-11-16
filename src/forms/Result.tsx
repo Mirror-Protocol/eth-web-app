@@ -26,7 +26,7 @@ const Result = ({ hash, error, onFail }: Props) => {
         const receipt = await provider.waitForTransaction(hash)
         setReceipt(receipt)
       } catch (error) {
-        setReceiptError(error)
+        setReceiptError(error as Error)
       }
     }
 

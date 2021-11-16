@@ -1,5 +1,4 @@
 import { useRecoilValue } from "recoil"
-import { useRouteMatch } from "react-router-dom"
 import { ethers } from "ethers"
 
 import { formatAsset } from "../libs/parse"
@@ -7,11 +6,11 @@ import { useAsset } from "../database/asset"
 import { useContract } from "../database/contract"
 import { rewardQuery } from "../database/rewards"
 import FormContainer from "./FormContainer"
+import useTokenParam from "./useTokenParam"
 
 const Claim = () => {
   /* context */
-  const { params } = useRouteMatch<{ token: string }>()
-  const { token } = params
+  const token = useTokenParam()
   const { pool } = useAsset(token)
   const reward = useRecoilValue(rewardQuery(token))
 

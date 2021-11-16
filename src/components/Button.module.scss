@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "mixins";
 @import "variables";
 
@@ -79,7 +80,7 @@
 
 /* sizes */
 @mixin button-size($font-size, $height, $padding) {
-  border-radius: ($height / 2);
+  border-radius: math.div($height, 2);
   font-size: $font-size;
   height: $height;
   padding: 0 $padding;
