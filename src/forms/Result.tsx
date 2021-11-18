@@ -63,15 +63,7 @@ const Result = ({ hash, error, onFail }: Props) => {
         : undefined,
   }
 
-  return (
-    <Wait {...wait}>
-      {error?.message ?? receiptError?.message}
-      <p className={styles.banner}>
-        <Icon name="info" size={12} />
-        Transactions are faster at <MirrorLink />
-      </p>
-    </Wait>
-  )
+  return <Wait {...wait}>{error?.message ?? receiptError?.message}</Wait>
 }
 
 export default Result
