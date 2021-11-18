@@ -4,7 +4,6 @@ import useRefreshOnPathnameChange from "./database/useRefresh"
 import { useSelectWalletModal } from "./database/selectWalletModal"
 import WithSuspense from "./containers/WithSuspense"
 import Modal from "./containers/Modal"
-import TerraBanner from "./layouts/TerraBanner"
 import Header from "./layouts/Header"
 import Footer from "./layouts/Footer"
 import Airdrop from "./layouts/Airdrop"
@@ -19,10 +18,6 @@ const App = () => {
 
   return (
     <WithSuspense noFallback>
-      <Container>
-        <TerraBanner />
-      </Container>
-
       <Header />
       <Container>{routes}</Container>
       <Footer />
