@@ -1,32 +1,22 @@
-import Container from "./components/Container"
-import { useReloadOnNetworkChange } from "./hooks"
-import useRefreshOnPathnameChange from "./database/useRefresh"
-import { useSelectWalletModal } from "./database/selectWalletModal"
-import WithSuspense from "./containers/WithSuspense"
-import Modal from "./containers/Modal"
-import Header from "./layouts/Header"
-import Footer from "./layouts/Footer"
-import Airdrop from "./layouts/Airdrop"
-import SelectWallet from "./layouts/SelectWallet"
-import routes from "./routes"
-import "./App.scss"
+import Links from "./Links"
+import { ReactComponent as Logo } from "./Logo.svg"
+import styles from "./App.module.scss"
 
 const App = () => {
-  useReloadOnNetworkChange()
-  useRefreshOnPathnameChange()
-  const modal = useSelectWalletModal()
-
   return (
-    <WithSuspense noFallback>
-      <Header />
-      <Container>{routes}</Container>
-      <Footer />
-      <Airdrop />
+    <main className={styles.main}>
+      <header className={styles.header}>
+        <Logo />
+        <h1 className={styles.title}>Mirror Protocol</h1>
+        <p className="muted">
+          Choose any link below to access the decentralized web app
+        </p>
+      </header>
 
-      <Modal {...modal}>
-        <SelectWallet />
-      </Modal>
-    </WithSuspense>
+      <section>
+        <Links />
+      </section>
+    </main>
   )
 }
 

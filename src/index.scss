@@ -1,5 +1,9 @@
 @import "mixins";
 @import "variables";
 @import "reboot";
-@import "colors";
 @import "utils";
+
+#meth {
+  @include app;
+  padding: 20px;
+}
